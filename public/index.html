@@ -3,41 +3,166 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+
+    <!-- Viewport with iOS optimizations -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Coding Patterns" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Theme colors -->
+    <meta name="theme-color" content="#007AFF" />
+    <meta name="msapplication-TileColor" content="#007AFF" />
+
+    <!-- SEO and Social -->
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Master coding interview patterns with our comprehensive guide. Learn 14 essential patterns with examples in Python, Java, and C."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta
+      name="keywords"
+      content="coding patterns, interview prep, algorithms, data structures, leetcode, programming"
+    />
+    <meta name="author" content="Coding Patterns App" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Coding Patterns - Interview Preparation"
+    />
+    <meta
+      property="og:description"
+      content="Master the 14 essential coding patterns for technical interviews"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%PUBLIC_URL%" />
+
+    <!-- Icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="%PUBLIC_URL%/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="%PUBLIC_URL%/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="%PUBLIC_URL%/favicon-16x16.png"
+    />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Preload system fonts -->
+    <link
+      rel="preload"
+      href="/fonts/sf-pro-display.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <title>Coding Patterns - Master Interview Algorithms</title>
+
+    <style>
+      /* Critical CSS for faster loading */
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+          "SF Pro Text", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+
+      /* Loading state */
+      #root {
+        min-height: 100vh;
+      }
+
+      .loading-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      }
+
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #e2e8f0;
+        border-top: 3px solid #007aff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Hide loading once React loads */
+      #root:not(:empty) + .loading-container {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <noscript>
+      <div style="text-align: center; padding: 2rem; font-family: system-ui">
+        <h2>JavaScript Required</h2>
+        <p>You need to enable JavaScript to run this app.</p>
+      </div>
+    </noscript>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <div id="root">
+      <!-- Loading fallback -->
+      <div class="loading-container">
+        <div style="text-align: center">
+          <div class="loading-spinner"></div>
+          <p style="margin-top: 1rem; color: #64748b; font-size: 14px">
+            Loading Coding Patterns...
+          </p>
+        </div>
+      </div>
+    </div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <!-- Performance monitoring (optional) -->
+    <script>
+      // Simple performance logging
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          if (window.performance && window.performance.timing) {
+            const loadTime =
+              window.performance.timing.loadEventEnd -
+              window.performance.timing.navigationStart;
+            console.log("Page load time:", loadTime + "ms");
+          }
+        }, 0);
+      });
+
+      // iOS specific optimizations
+      if (
+        navigator.userAgent.includes("iPhone") ||
+        navigator.userAgent.includes("iPad")
+      ) {
+        document.addEventListener("touchstart", function () {}, true);
+      }
+    </script>
   </body>
 </html>

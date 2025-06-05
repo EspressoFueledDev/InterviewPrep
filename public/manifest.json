@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Coding Patterns",
+  "name": "Coding Patterns - Interview Preparation",
+  "description": "Master the 14 essential coding patterns for technical interviews",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +9,16 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "apple-touch-icon.png",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "180x180",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait",
+  "theme_color": "#007AFF",
+  "background_color": "#f8fafc",
+  "categories": ["education", "productivity", "developer"]
 }
